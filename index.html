@@ -5,82 +5,83 @@
 <title>Form Example</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
     <script type="text/javascript" src="js/formToWizard.js"></script>
+    <script type="text/javascript" src="js/jquery-cookie/jquery-cookie.js"></script>
 	<script src="js/validate.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
            $("#SignupForm").formToWizard({submitButton: 'SaveAccount' })
-		   		$("#step0Next").click(function() { //handler for step to to fire calculations
-				//strip raw data from the form to cacluate on
-				var bal = $('#P_MortgageExisting').val();
-				var val = $('#P_ValueEstimated').val();
-				var equity = Math.round((bal / val)*100);
-				$('#rpl-bal').html("$"+bal);
-				$('#rpl-val').html("$"+val);
-				$('#rpl-equity').html(equity+"%");
-				//done writing to Step 2. Note that even on step one this is OK. Could add step checking here later.
-				//Now some basic checks for the first 2 pages.
-				$q1=$('#P_MortgageExisting').val();
-				$q2=$('#P_ValueEstimated').val();
-				if($q1 == "")
-				{
-					$('#step1Prev').trigger("click");
-					window.alert( "Please Select Mortgage Amount" );
-				} else
-				{
-					if($q2 == "")
-					{
-						$('#step1Prev').trigger("click");
-						window.alert( "Please Select Home Value" );
-					}
-				}	
-				$('#A_Zip').focus();
-				});
-				$("#step1Next").click(function() {
-					$q3=$('#A_Zip').val();
-					if($q3 == "")
-					{
-						$('#step2Prev').trigger("click");
-						window.alert( "Please Input Zip" );
-					} else
-					{
-						address = $('#A_Zip').val();
-						// Using Google Maps' Geocoding API, we can reverse-search a location.
-						geocoder = new google.maps.Geocoder();
+		  //  		$("#step0Next").click(function() { //handler for step to to fire calculations
+				// //strip raw data from the form to cacluate on
+				// var bal = $('#P_MortgageExisting').val();
+				// var val = $('#P_ValueEstimated').val();
+				// var equity = Math.round((bal / val)*100);
+				// $('#rpl-bal').html("$"+bal);
+				// $('#rpl-val').html("$"+val);
+				// $('#rpl-equity').html(equity+"%");
+				// //done writing to Step 2. Note that even on step one this is OK. Could add step checking here later.
+				// //Now some basic checks for the first 2 pages.
+				// $q1=$('#P_MortgageExisting').val();
+				// $q2=$('#P_ValueEstimated').val();
+				// if($q1 == "")
+				// {
+				// 	$('#step1Prev').trigger("click");
+				// 	window.alert( "Please Select Mortgage Amount" );
+				// } else
+				// {
+				// 	if($q2 == "")
+				// 	{
+				// 		$('#step1Prev').trigger("click");
+				// 		window.alert( "Please Select Home Value" );
+				// 	}
+				// }	
+				// $('#A_Zip').focus();
+				// });
+				// $("#step1Next").click(function() {
+				// 	$q3=$('#A_Zip').val();
+				// 	if($q3 == "")
+				// 	{
+				// 		$('#step2Prev').trigger("click");
+				// 		window.alert( "Please Input Zip" );
+				// 	} else
+				// 	{
+				// 		address = $('#A_Zip').val();
+				// 		// Using Google Maps' Geocoding API, we can reverse-search a location.
+				// 		geocoder = new google.maps.Geocoder();
 				
-						geocoder.geocode({'address': address}, function(results, status) 
-							{
-								if (status == google.maps.GeocoderStatus.OK) 
-								{// take first array element returned and loop through each address_components element
-									for (x in results[0].address_components) 
-									{
-										address = results[0].address_components[x];
-										for (y in address.types) 
-										{
-											address_type = address.types[y];
-											if (address_type == "administrative_area_level_1") {
-												$('#A_State').val(address.short_name);
+				// 		geocoder.geocode({'address': address}, function(results, status) 
+				// 			{
+				// 				if (status == google.maps.GeocoderStatus.OK) 
+				// 				{// take first array element returned and loop through each address_components element
+				// 					for (x in results[0].address_components) 
+				// 					{
+				// 						address = results[0].address_components[x];
+				// 						for (y in address.types) 
+				// 						{
+				// 							address_type = address.types[y];
+				// 							if (address_type == "administrative_area_level_1") {
+				// 								$('#A_State').val(address.short_name);
 												
-											} else if (address_type == "locality") {
-												$('#A_City').val(address.long_name);
-											}
-										}
-									}
-								}
-							});
-							$('#part3 input[name=A_Zip]').val(address);
-					}
-								$('#A_Street').focus();
-				});
-				$("#step2Next").click(function() {
-				if($('#A_Street').val() == "" || $('#A_City').val() == "" || $('#A_State').val() == "")
-				{
-					$('#step3Prev').trigger("click");
-					window.alert( "Please Input Property Address" );
-				} else
-				{
-					$('#N_First').focus();
-				}
-				})
+				// 							} else if (address_type == "locality") {
+				// 								$('#A_City').val(address.long_name);
+				// 							}
+				// 						}
+				// 					}
+				// 				}
+				// 			});
+				// 			$('#part3 input[name=A_Zip]').val(address);
+				// 	}
+				// 				$('#A_Street').focus();
+				// });
+				// $("#step2Next").click(function() {
+				// if($('#A_Street').val() == "" || $('#A_City').val() == "" || $('#A_State').val() == "")
+				// {
+				// 	$('#step3Prev').trigger("click");
+				// 	window.alert( "Please Input Property Address" );
+				// } else
+				// {
+				// 	$('#N_First').focus();
+				// }
+				// })
         });
 
     </script>
