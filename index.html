@@ -1,15 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- <DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Form Example</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-    <script type="text/javascript" src="js/formToWizard.js"></script>
-    <script type="text/javascript" src="js/jquery-cookie/jquery-cookie.js"></script>
-	<script src="js/validate.js" type="text/javascript"></script>
-    <script type="text/javascript">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-cookie/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+<script type="text/javascript" src="formzilla-fields.js"></script>
+<script type="text/javascript" src="formzilla.js"></script>
+<script type="text/javascript" src="js/formToWizard.js"></script>
+<!-- <script type="text/javascript" src="js/validate.js"></script> -->
+<script type="text/javascript">
         $(document).ready(function(){
-           $("#SignupForm").formToWizard({submitButton: 'SaveAccount' })
+        	$.getScript('filezilla.js', function(data, textStatus, jqXHR) {
+        		console.log('hahahaha')
+        	});
+           	$("#SignupForm").formToWizard({submitButton: 'SaveAccount' })
 		  //  		$("#step0Next").click(function() { //handler for step to to fire calculations
 				// //strip raw data from the form to cacluate on
 				// var bal = $('#P_MortgageExisting').val();
@@ -93,7 +99,7 @@
 <div style="width:1400px">
 	<div id="formcontainer">
         <form id="SignupForm" name="0" method="POST" action="http://mycontrolclick.com/gateway/post.php" onsubmit="return v()">
-                <fieldset>
+                <fieldset id='1'>
                     <legend>Estimate Savings</legend>
                     <label for="P_MortgageExisting">Mortgage Balance <div class="formitalics">(OK To Estimate)</div></label>
                     <select name="P_MortgageExisting" id="P_MortgageExisting"  value="" class="required">
@@ -223,7 +229,7 @@
 								<option value="3400000">3,200,000+</option>
                     </select>
                 </fieldset>
-                <fieldset>
+                <fieldset id='2'>
                     <legend>Review Results</legend>
                     <div id="resultsbox">
                         <div class="calc">Loan Amount: 			<div id="rpl-bal">$0</div></div>

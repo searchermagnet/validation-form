@@ -85,15 +85,15 @@
             },
             P_MortageExisting: {
                 required: true,
-                digits: true,
+                // digits: true,
                 min: 10000,
-                max: 100000
+                max: 1000000
             },
             P_ValueEstimated: {
                 required: true,
-                digits: true,
+                // digits: true,
                 min: 10000,
-                max: 100000
+                max: 1000000
             },
             P_Type: {
                 required: true

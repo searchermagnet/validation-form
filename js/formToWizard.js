@@ -52,16 +52,40 @@
 
         function createNextButton(i) {
             var stepName = "step" + i;
+            // consol
             $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Next' class='next'>Calculate Payment &raquo</a>");
 
             $("#" + stepName + "Next").bind("click", function(e) {
-                $("#" + stepName).hide();
-                $("#step" + (i + 1)).show();
-                if (i + 2 == count)
-                    $(submmitButtonName).show();
-                selectStep(i + 1);
+                console.log('next was clicked')
+                $("#SignupForm").validate(opt);  //validate whole form
+                var fsID = $(this).closest('fieldset').attr('id');        
+                $('#' + fsID + ' :input').each(function (index, element) {
+                    //iterate through elments in fieldset
+                    var eleid = $(element).attr('id');
+                    if (eleid !== 'next' && eleid !== 'submit') {
+                        var valid = $("#SignupForm").validate().element( "#"+eleid );
+                        if (valid) {
+                             $("#" + stepName).hide();
+                            $("#step" + (i + 1)).show();
+                            if (i + 2 == count)
+                                $(submmitButtonName).show();
+                            selectStep(i + 1);
+                        }
+                    }
+                });
+
             });
+    
+            return false;
         }
+            //     console.log('clicked')
+            //     $("#" + stepName).hide();
+            //     $("#step" + (i + 1)).show();
+            //     if (i + 2 == count)
+            //         $(submmitButtonName).show();
+            //     selectStep(i + 1);
+            // });
+        
 
         function selectStep(i) {
             $("#steps li").removeClass("current");
