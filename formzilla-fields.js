@@ -41,7 +41,7 @@
                 digits: true,
                 maxlength: 10
             },
-            C_HomePhone: {
+            C_HomePhone1: {
                 required: true,
                 digits: true,
                 maxlength: 3
@@ -60,6 +60,21 @@
                 required: true,
                 digits: true,
                 maxlength: 10
+            },
+            C_WorkPhone1: {
+                required: true,
+                digits: true,
+                maxlength: 3
+            },
+            C_WorkPhone2: {
+                required: true,
+                digits: true,
+                maxlength: 3
+            },
+            C_WorkPhone3: {
+                required: true,
+                digits: true,
+                maxlength: 4
             },
             O_Age: {
                 required: true,

@@ -68,20 +68,20 @@ $(document).ready( function() {
 
     // any fields you wish to ignore, just stick a 'class=ignore' in the input type HTML
     $.validator.setDefaults({ignore: ".ignore"});
-    $('#submit').click(function () {
-        $("#LeadForm").validate(opt)
-    });
-    $('#next').click(function () {
-        console.log('next was clicked')
-        $("#LeadForm").validate(opt);  //validate whole form
-        var fsID = $(this).closest('fieldset').attr('id');        
-        $('#' + fsID + ' :input').each(function (index, element) {
-            //iterate through elments in fieldset
-            var eleid = $(element).attr('id');
-            if (eleid !== 'next' && eleid !== 'submit') {
-                var valid = $("#LeadForm").validate().element( "#"+eleid );
-            }
-        });
-        return false;
-    });
+    // $('#submit').click(function () {
+    //     $("#LeadForm").validate(opt)
+    // });
+    // $('#next').click(function () {
+    //     //console.log('next was clicked')
+    //     $("#LeadForm").validate(opt);  //validate whole form
+    //     var fsID = $(this).closest('fieldset').attr('id');        
+    //     $('#' + fsID + ' :input').each(function (index, element) {
+    //         //iterate through elments in fieldset
+    //         var eleid = $(element).attr('id');
+    //         if (eleid !== 'next' && eleid !== 'submit') {
+    //             var valid = $("#LeadForm").validate().element( "#"+eleid );
+    //         }
+    //     });
+    //     return false;
+    // });
 });    

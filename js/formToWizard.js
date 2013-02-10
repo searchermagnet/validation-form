@@ -3,15 +3,15 @@
 (function($) {
     $.fn.formToWizard = function(options) {
         options = $.extend({  
-            submitButton: "" 
+            submitButton: "submit" 
         }, options); 
         
         var element = this;
 
         var steps = $(element).find("fieldset");
         var count = steps.size();
-        var submmitButtonName = "#" + options.submitButton;
-        $(submmitButtonName).hide();
+        var submitButtonName = "#" + options.submitButton;
+        $(submitButtonName).hide();
 
         // 2
         $(element).before("<ul id='steps'></ul>");
@@ -45,7 +45,7 @@
             $("#" + stepName + "Prev").bind("click", function(e) {
                 $("#" + stepName).hide();
                 $("#step" + (i - 1)).show();
-                $(submmitButtonName).hide();
+                $(submitButtonName).hide();
                 selectStep(i - 1);
             });
         }
@@ -54,7 +54,9 @@
             var stepName = "step" + i;
             // consol
             $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Next' class='next'>Calculate Payment &raquo</a>");
-
+            $('#submit').click(function () {
+                $("#LeadForm").validate(opt);
+            });
             $("#" + stepName + "Next").bind("click", function(e) {
                 console.log('next was clicked')
                 $("#SignupForm").validate(opt);  //validate whole form
@@ -62,13 +64,16 @@
                 $('#' + fsID + ' :input').each(function (index, element) {
                     //iterate through elments in fieldset
                     var eleid = $(element).attr('id');
+                    console.log(eleid)
                     if (eleid !== 'next' && eleid !== 'submit') {
                         var valid = $("#SignupForm").validate().element( "#"+eleid );
                         if (valid) {
-                             $("#" + stepName).hide();
+                            $("#" + stepName).hide();
+                            // console.log(i)
+                            // console.log(count)
                             $("#step" + (i + 1)).show();
                             if (i + 2 == count)
-                                $(submmitButtonName).show();
+                                $(submitButtonName).show();
                             selectStep(i + 1);
                         }
                     }
