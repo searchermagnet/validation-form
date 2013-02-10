@@ -7,52 +7,35 @@ $(document).ready( function() {
     //     console.log('Load was performed.');
     // });
     //validates max-length in real time
+    //need to add method for <select>
+    
+    /*--------------------------*/
+    /* Onkeyup Skip */
+    /*--------------------------*/
     $("input").keyup(function() {
-    switch (this.id) {
-        case 'A_Zip':
-            $(this).attr('maxlength', '5')
-            if (this.value.length >= 5) {
-                $(this).next().focus()
-                this.max
-            }
-            break       
-        case 'C_WorkPhone':
-        case 'C_HomePhone':
-            $(this).attr('maxlength', '10')
-            if (this.value.length >= 10) {
-                $(this).next().focus()
-                this.max
-            }
-            break                
-        case 'C_WorkPhone1':
-        case 'C_HomePhone1':
-            $(this).attr('maxlength', '3')
-            if (this.value.length >= 3) {
-                $(this).next().focus()
-                this.max
-            }
-            break                
-        case 'C_WorkPhone2':
-        case 'C_HomePhone2':
-            $(this).attr('maxlength', '3')
-            if (this.value.length >= 3) {
-                $(this).next().focus()
-                this.max
-            }
-            break                
-        case 'C_WorkPhone3':
-        case 'C_HomePhone3':
-            $(this).attr('maxlength', '4')
-            if (this.value.length >= 4) {
-                $(this).next().focus()
-                this.max
-            }
-            break                
+        function retMaxLength(eleID)
+        {
+            var maxLength=new Array(); 
+            maxLength[A_Zip]        =5;       
+            maxLength[C_WorkPhone]  =10;
+            maxLength[C_WorkPhone1] =3;
+            maxLength[C_WorkPhone2] =3;
+            maxLength[C_WorkPhone3] =4;
+            maxLength[C_WorkPhone]  =10;
+            maxLength[C_WorkPhone1] =3;
+            maxLength[C_WorkPhone2] =3;
+            maxLength[C_WorkPhone3] =4;    
+            maxLength[O_Age]        =2;
+            maxLength[O_AgeSpouse]  =2;
+            return maxlength[eleID];
         }
+        var maxlength = retMaxLength(this.id);
+        $(this).attr('maxlength', maxlength)
+        if (this.value.length >= maxlength) {
+            $(this).next().focus()
+            this.max
+        } else { /* nothing */ }
     });
-
-            
-
     //fills out forms based on cookies
     $.each($.cookie(), function (index, item) {
          $('input').each(function() {
